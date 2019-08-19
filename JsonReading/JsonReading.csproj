@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="JObject.cs" />
     <Compile Include="JReader.cs" />
+    <Compile Include="JsonException.cs" />
     <Compile Include="JString.cs" />
     <Compile Include="JToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
