@@ -6,23 +6,11 @@ using System.Threading.Tasks;
 
 namespace JsonReading
 {
-	public class JReader
+	public static class JReader
 	{
-		public JReader() { }
-		
-
-		public object this[string Index]
+		public static JToken Parse(string JString)
 		{
-			get { return null; }
-			set { }
+			return default(JToken);
 		}
-
-
-		static JObject Parse(string JString)
-		{
-			return default(JObject);
-		}
-
-
 	}
 }

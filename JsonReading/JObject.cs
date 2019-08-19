@@ -9,16 +9,13 @@ namespace JsonReading
 	public abstract class JObject
 	{
 		public abstract string Name { get; set; }
-
-		public JObject()
+		
+		public JObject(string Name)
 		{
-
+			this.Name = Name;
 		}
-	
-		public override string ToString()
-		{
-			return base.ToString();
-		}
+		
+		public abstract string ToStringPressed();
 
 	}
 }

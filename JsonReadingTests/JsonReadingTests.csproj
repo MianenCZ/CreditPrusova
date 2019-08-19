@@ -57,6 +57,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="JReaderTests.cs" />
+    <Compile Include="JStringTests.cs" />
+    <Compile Include="JTokenTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

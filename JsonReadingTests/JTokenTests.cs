@@ -9,19 +9,12 @@ using System.Threading.Tasks;
 namespace JsonReading.Tests
 {
 	[TestClass()]
-	public class JReaderTests
+	public class JTokenTests
 	{
 		[TestMethod()]
-		public void JReaderCreateTest()
+		public void ToStringPressedTest()
 		{
-
-		}
-
-
-		[TestMethod()]
-		public void JReaderExample()
-		{
-
+			JToken t = new JToken("test");
 		}
 	}
 }

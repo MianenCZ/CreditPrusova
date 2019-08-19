@@ -6,10 +6,25 @@ using System.Threading.Tasks;
 
 namespace JsonReading
 {
-	public class JString :JObject
+	public sealed class JString :	JObject
 	{
 		public override string Name { get; set; }
 
-		string Value;
+		public JString(string Name) : base(Name)
+		{
+			this.Name = Name;
+		}
+
+		public string Value { get; set; }
+		
+		public override string ToString()
+		{
+			return $"\"{Name}\": \"{Value}\"";
+		}
+
+		public override string ToStringPressed()
+		{
+			return $"\"{Name}\":\"{Value}\"";
+		}
 	}
 }
