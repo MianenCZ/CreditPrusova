@@ -14,17 +14,31 @@ namespace JsonReading
 		{
 			this.Name = Name;
 		}
+        public JString(string Name, string Value) : base(Name)
+        {
+            this.Name = Name;
+            this.Value = Value;
+        }
 
 		public string Value { get; set; }
 		
-		public override string ToString()
+		public override string ToString(int tabs)
 		{
-			return $"\"{Name}\": \"{Value}\"";
+			return $"\"{this.Name}\": \"{this.Value}\"";
 		}
 
 		public override string ToStringPressed()
 		{
-			return $"\"{Name}\":\"{Value}\"";
+			return $"\"{this.Name}\":\"{this.Value}\"";
 		}
-	}
+
+        public override string ValueToString(int tabs)
+        {
+            return $"\"{this.Value}\"";
+        }
+        public override string ValueToStringPressed()
+        {
+            return $"\"{this.Value}\"";
+        }
+    }
 }
