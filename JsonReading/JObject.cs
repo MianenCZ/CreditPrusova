@@ -18,7 +18,13 @@ namespace JsonReading
         public abstract string ToString(int tabs);
 
 		public abstract string ToStringPressed();
+		//TODO: Why public?
         public abstract string ValueToString(int tabs);
-        public abstract string ValueToStringPressed();
+
+		//TODO: Why public?
+		public abstract string ValueToStringPressed();
+
+		//TODO: Unreasonable missing of basic ToString()
+		//public abstract string ToString();
 	}
 }

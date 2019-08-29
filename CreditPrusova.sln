@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonReadingTests", "JsonRea
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C1BFB6EA-8B7E-4B7A-B1B8-411968945747}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MianenTests", "JsonReadingTests1\MianenTests.csproj", "{5D7A22C1-655F-4854-8D8C-D65B23647C65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{39F9D3F2-4194-4ACF-AF37-F15227A0F974}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39F9D3F2-4194-4ACF-AF37-F15227A0F974}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39F9D3F2-4194-4ACF-AF37-F15227A0F974}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D7A22C1-655F-4854-8D8C-D65B23647C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D7A22C1-655F-4854-8D8C-D65B23647C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D7A22C1-655F-4854-8D8C-D65B23647C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D7A22C1-655F-4854-8D8C-D65B23647C65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

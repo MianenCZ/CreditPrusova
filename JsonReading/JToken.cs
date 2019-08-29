@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("JsonReadingTests")]
+[assembly: InternalsVisibleTo("MianenTests")]
 namespace JsonReading
 {
 	public class JToken : JObject
@@ -44,6 +45,7 @@ namespace JsonReading
             return output.ToString();
         }
 
+		//TODO: Private VS Public
         public override string ValueToString(int tabs)
         {
             StringBuilder output = new StringBuilder("{");

@@ -21,6 +21,7 @@ namespace JsonReading.Tests
         [TestMethod()]
         public void JTokenToStringPressedTest()
         {
+			//TODO: object a is not used
             JArray a = new JArray("test");
             JNumber n = new JNumber("number", 7.3);
             JString s = new JString("string", "example");
@@ -48,6 +49,7 @@ namespace JsonReading.Tests
         [TestMethod()]
         public void JTokenToStringTest()
         {
+			//TODO: Why is possible to add a JToken into an array.
             JArray a = new JArray("test");
             JNumber n = new JNumber("number", 7.3);
             JString s = new JString("string", "example");

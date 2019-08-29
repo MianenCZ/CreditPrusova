@@ -52,6 +52,10 @@ namespace JsonReadingTests
             Console.WriteLine(a.ToStringPressed());
             Assert.IsNotNull(a);
             Assert.AreEqual("\"test\":[42,\"pokus\",true,null,[null,true]]", a.ToStringPressed());
+
+
+
+
         }
         [TestMethod()]
         public void JArrayValueToStringTest()
