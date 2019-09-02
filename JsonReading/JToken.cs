@@ -11,10 +11,26 @@ namespace JsonReading
 	public class JToken : JObject
 	{
 		public override string Name { get; set; }
-		
+		internal override JRoot Root { get; set; }
+
 		public int ChildrenCount { get; set; }
 
 		internal List<JObject> Value;
+
+		/*
+		public JObject this[string Key]
+		{
+			get
+			{
+				return Items[Key];
+			}
+			set
+			{
+				Items[Key] = value;
+				value.Root = this.Root;
+			}
+		}
+		*/
 
 		public JToken(string Name) : base(Name)
 		{

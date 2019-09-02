@@ -11,6 +11,13 @@ namespace JsonReading
     {
         public override string Name { get; set; }
 
+		internal override JRoot Root { get; set; }
+
+		public JNumber(double Value) : base("")
+		{
+			this.Value = Value;
+		}
+
         public JNumber(string Name) : base(Name)
         {
             this.Name = Name;
@@ -60,7 +67,12 @@ namespace JsonReading
             string value = this.Value.ToString(nfi);
             return value;
         }
-    }
+
+		public override string ToString()
+		{
+			return Value.ToString();
+		}
+	}
 
 }
 

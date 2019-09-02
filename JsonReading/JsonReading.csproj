@@ -47,6 +47,7 @@
     <Compile Include="JNumber.cs" />
     <Compile Include="JObject.cs" />
     <Compile Include="JReader.cs" />
+    <Compile Include="JRoot.cs" />
     <Compile Include="JsonException.cs" />
     <Compile Include="JString.cs" />
     <Compile Include="JToken.cs" />

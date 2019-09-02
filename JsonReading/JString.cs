@@ -10,6 +10,8 @@ namespace JsonReading
 	{
 		public override string Name { get; set; }
 
+		internal override JRoot Root { get; set; }
+
 		public JString(string Name) : base(Name)
 		{
 			this.Name = Name;

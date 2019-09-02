@@ -10,6 +10,8 @@ namespace JsonReading
     {
         public abstract string Name { get; set; }
 
+		internal abstract JRoot Root { get; set; }
+
         public JObject(string Name)
         {
             this.Name = Name;
