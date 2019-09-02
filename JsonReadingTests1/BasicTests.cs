@@ -54,6 +54,13 @@ namespace JsonReadingTests.MianenTests
 			Assert.AreEqual(1, t.Value.Count);
 		}
 
+		[TestMethod()]
+		public void JTokenIndexer()
+		{
+			JToken t = new JToken("some");				   			 
+
+		}
+
 
 	}
 }

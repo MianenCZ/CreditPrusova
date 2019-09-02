@@ -9,6 +9,9 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("MianenTests")]
 namespace JsonReading
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class JToken : JObject
 	{
 		public override string Name { get; set; }
@@ -16,6 +19,28 @@ namespace JsonReading
 		public int ChildrenCount { get; set; }
 
 		internal List<JObject> Value;
+
+		/// <summary>
+		/// Refers to JToken items
+		/// </summary>
+		/// <param name="Key">Unique key</param>
+		/// <returns>JObject if exists</returns>
+		public JObject this[string Key]
+		{
+			get { return null; }
+			set {
+				if (Value.Count == 0)
+					throw new JsonException("No items");
+			}
+		}
+
+		public int Count { get => Value.Count; }
+
+		public string[] Keys { get => null; }
+
+
+
+
 
 		public JToken(string Name) : base(Name)
 		{
@@ -80,7 +105,9 @@ namespace JsonReading
             return output.ToString();
         }
 
-        
-       
-    }
+		public override string ToString()
+		{
+			return this.ValueToString(0);
+		}
+	}
 }
