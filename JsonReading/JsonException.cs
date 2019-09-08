@@ -19,4 +19,8 @@ namespace JsonReading
 			System.Runtime.Serialization.StreamingContext context) 
 			: base(info, context) { }
 	}
+    public class JsonRootException : JsonException
+    {
+        public JsonRootException(string message)  { }
+    }
 }
