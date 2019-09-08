@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace JsonNameless
 {
+
     public sealed class JRoot : JObject //IDisposable
     {
         internal override JRoot Root { get => this; set { } }
+
 
         internal Dictionary<string, JObject> Children;
 
@@ -33,7 +35,9 @@ namespace JsonNameless
             }
         }
 
+
         public JRoot()
+
         {
             this.Children = new Dictionary<string, JObject>();
             this.AntiCycling = new HashSet<JObject>();
@@ -146,4 +150,6 @@ namespace JsonNameless
             return builder.ToString();
         }
     }
+
 }
+

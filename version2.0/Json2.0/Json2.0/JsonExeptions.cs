@@ -34,4 +34,5 @@ namespace JsonNameless
         public JsonDuplicatedException(string message) { }
         public JsonDuplicatedException(string message, Exception innerException) { }
     }
-}
+} 
+

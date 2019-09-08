@@ -23,7 +23,9 @@ namespace JsonNameless
             set
             {
                 if (object.Equals(this.Root, null))
+
                     throw new JsonRootException("Root of array must be initialized before adding members to array");
+
                 //TODO: JExp
                 if (object.Equals(value, null))
                     throw new JsonNullException("Null cannot be assigned as a member of JArray");
@@ -74,7 +76,9 @@ namespace JsonNameless
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
+
             this.ToString(ref builder, 0);
+
             return builder.ToString();
         }
 
@@ -89,14 +93,18 @@ namespace JsonNameless
         {
             builder.Append("[");
             int i = 0;
+
             bool oneLine = true;
+
             if (this.Value.Count > 10)
             {
                 oneLine = false;
             }
             while ((i < this.Value.Count()) && (oneLine))
             {
+
                 if ((this.Value[i] is JToken) || (this.Value[i] is JArray))
+
                 {
                     oneLine = false;
                 }
@@ -123,7 +131,9 @@ namespace JsonNameless
                     {
                         builder.Append("\t");
                     }
+
                     this.Value[k].ToString(ref builder, tabs);
+
                     if (k < this.Value.Count - 1)
                     {
                         builder.Append(",");
@@ -135,7 +145,9 @@ namespace JsonNameless
                 {
                     builder.Append("\t");
                 }
+
                 //  builder.Append(" ]");                
+
             }
 
             builder.Append("]");
@@ -155,4 +167,6 @@ namespace JsonNameless
             builder.Append("]");
         }
     }
+
 }
+
