@@ -11,60 +11,78 @@ namespace JsonNamelessTests
     [TestClass]
     public class JArrayTests
     {
-        
+        [TestMethod()]
+        public void JArrarEnumerableConstructor()
+        {
+            List<JNumber> num = new List<JNumber>();
+            for (int i = 0; i < 10; i++)
+            {
+                num.Add(new JNumber(i));
+            }
+            JArray a = new JArray(num);
+            Console.WriteLine(a.ToString());
+            Assert.AreEqual("[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]", a.ToString());
+        }
         [TestMethod()]
         public void JArrayToStringPressedTest()
         {
             JArray a = new JArray();
             JNumber n = new JNumber(42);
+            JNumber n2 = new JNumber(7.3);
             JString s = new JString("pokus");
+            JString s2 = new JString("pokus2");
             JBool b = new JBool(true);
+            JBool b2 = new JBool(false);
             JNull nu = new JNull();
+            JNull nu2 = new JNull();
+            JNull nu3 = new JNull();
             JToken t = new JToken();
-            a.Value.Add(n);
-            a.Value.Add(s);
-            a.Value.Add(b);
-            a.Value.Add(nu);
-            t["string"] = s;
-            t["nill"] = nu;
-            t["cislo"] = n;
-            a.Value.Add(t);
-            JArray aa = new JArray();
-            aa.Value.Add(nu);
-            aa.Value.Add(b);
-            a.Value.Add(aa);
+            JRoot root = new JRoot();
+            root["pole"] = a;
+            a.Add(n);
+            a.Add(s);
+            a.Add(b);
+            a.Add(nu);
+            a.Add(t);
+            t["string"] = s2;
+            t["nill"] = nu2;
+            t["cislo"] = n2;
             Console.WriteLine(a.ToStringPressed());
-            Assert.IsNotNull(a);
-            //.AreEqual("[42,\"pokus\",true,null,[null,true]]", a.ToStringPressed());
+            JArray aa = new JArray();
+            a.Add(aa);
+            aa.Add(nu3);
+            aa.Add(b2);
+            Console.WriteLine(a.ToStringPressed());
         }
         [TestMethod()]
         public void JArrayToStringTest()
         {
             JArray a = new JArray();
             JNumber n = new JNumber(42);
+            JNumber n2 = new JNumber(7.3);
             JString s = new JString("pokus");
+            JString s2 = new JString("pokus2");
             JBool b = new JBool(true);
+            JBool b2 = new JBool(false);
             JNull nu = new JNull();
+            JNull nu2 = new JNull();
+            JNull nu3 = new JNull();
             JToken t = new JToken();
-            a.Value.Add(n);
-            a.Value.Add(s);
-            a.Value.Add(b);
-            a.Value.Add(nu);
-            t["string"] = s;
-            t["nill"] = nu;
-            t["cislo"] = n;            
-            a.Value.Add(t);
+            JRoot root = new JRoot();
+            root["pole"] = a;
+            a.Add(n);
+            a.Add(s);
+            a.Add(b);
+            a.Add(nu);
+            a.Add(t);
+            t["string"] = s2;
+            t["nill"] = nu2;
+            t["cislo"] = n2;                        
             Console.WriteLine(a.ToString());
             JArray aa = new JArray();
-            aa.Value.Add(nu);
-            aa.Value.Add(b);
-            a.Value.Add(aa);
-            t["array"] = aa;
-            Console.WriteLine(a.ToString());
-            JArray aaa = new JArray();
-            aaa.Value.Add(s);
-            aaa.Value.Add(nu);
-            aa.Value.Add(aaa);
+            a.Add(aa);
+            aa.Add(nu3);
+            aa.Add(b2);
             Console.WriteLine(a.ToString());
 
         }
