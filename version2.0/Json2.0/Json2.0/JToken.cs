@@ -8,13 +8,15 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("JsonNamelessTests")]
 namespace JsonNameless
 {
-    public sealed class JToken : JObject
-    {       
-        internal Dictionary<string,JObject> Children;
+    public sealed class JToken : JObject //IDisposable
+
+    {
+        internal Dictionary<string, JObject> Children;
 
         internal override JRoot Root { get; set; }
 
-        public int ChildrenCount { get =>Children.Count; }
+        public int ChildrenCount { get => Children.Count; }
+
 
         public JObject this[string Key]
         {
@@ -24,11 +26,18 @@ namespace JsonNameless
             }
             set
             {
-                /*  if (object.Equals(this.Root, null))
-                      throw new Exception(); 
-                      */ //TODO: JExp
+                if (object.Equals(this.Root, null))
+                    throw new JsonRootException("Root of array must be initialized before adding members to array");
+                //TODO: JExp
+                if (object.Equals(value, null))
+                    throw new JsonNullException("Null cannot be assigned as a member of JToken");
+                if (!(this.Root.CanBeAdded(value)))
+
+                    throw new JsonDuplicatedException("This JsonTree already contains JObject you are trying to add and it cannot be added again.");
+
                 Children[Key] = value;
                 value.Root = this.Root;
+                this.Root.AddToAnticycling(value);
             }
         }
         public JToken()
@@ -44,7 +53,9 @@ namespace JsonNameless
             {
                 foreach (var item in this.Children)
                 {
-                    if((item.Value is JToken) || (item.Value is JArray))
+
+                    if ((item.Value is JToken) || (item.Value is JArray))
+
                     {
                         oneLine = false;
                     }
@@ -54,7 +65,7 @@ namespace JsonNameless
             {
                 oneLine = false;
             }
-            
+
             if (oneLine)
             {
                 int j = 0;
@@ -73,7 +84,9 @@ namespace JsonNameless
             {
                 tabs++;
                 int k = 0;
-                foreach (var item in this.Children)                
+
+                foreach (var item in this.Children)
+
                 {
                     builder.Append("\n");
                     for (int j = 0; j < tabs; j++)
@@ -101,7 +114,9 @@ namespace JsonNameless
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            this.ToString(ref builder,0);
+
+            this.ToString(ref builder, 0);
+
             return builder.ToString();
         }
 

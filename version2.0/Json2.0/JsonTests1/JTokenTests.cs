@@ -14,8 +14,9 @@ namespace JsonNamelessTests
         [TestMethod()]
         public void JTokenToStringPressedTest()
         {
-            JArray a = new JArray();
             JNumber n = new JNumber(7.3);
+            JNumber n2 = new JNumber(42);
+            JNumber n3 = new JNumber(3.14);
             JString s = new JString("example");
             JBool b = new JBool(true);
             JNull nu = new JNull();
@@ -24,19 +25,19 @@ namespace JsonNamelessTests
             JToken t = new JToken();
             JToken tt = new JToken();
             JRoot r = new JRoot();
-            aa.Value.Add(n);
-            aa.Value.Add(b);
-            tt["cislo"] = n;
-            tt["nil"] = (nu);
-            aa.Value.Add(tt);
-            a.Value.Add(s);
-            a.Value.Add(aa);
-            a.Value.Add(n);
-            t["inside"]=aa;
-            t["string"]=s;
-            root["dalsi cislo"]=n;
-            root["token"]=t;
             r["mnau"] = root;
+            root["dalsi cislo"] = n;
+            root["token"] = t;
+            t["inside"] = aa;
+            t["string"] = s;
+            aa.Add(n2);
+            aa.Add(b);
+            aa.Add(tt);
+            tt["cislo"] = n3;
+            tt["nil"] = (nu);
+
+            try { aa.Add(nu); }
+            catch (JsonDuplicatedException e) { Console.WriteLine("zkusili jsme pridat podruhe"); }
             Console.WriteLine(root.ToStringPressed());
             Console.WriteLine(root.ToString());
             Console.WriteLine(r.ToStringPressed());
