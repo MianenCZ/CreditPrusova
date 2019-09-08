@@ -19,6 +19,5 @@ namespace JsonNameless
 
         public abstract string ToStringPressed();
 
-
     }
 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace JsonNameless
 {
-    public sealed class JRoot :JObject
+    public sealed class JRoot :JObject //IDisposable
     {       
         internal override JRoot Root { get => this; set {  } }
 
         internal Dictionary<string, JObject> Children;
 
-        private HashSet<JObject> AntiCycling;
+        private HashSet<JObject> AntiCycling; //TODO: private
 
         //TODO: Exceptions
         public JObject this[string Key]
@@ -23,8 +23,13 @@ namespace JsonNameless
             }
             set
             {
+                if (object.Equals(value, null))
+                    throw new JsonNullException("Null cannot be assigned as a member of JRoot");
+                if (this.AntiCycling.Contains(value))
+                    throw new JsonDuplicatedException("This JsonTree already contains JObject you are trying to add and it cannot be added again.");
                 Children[Key] = value;
                 value.Root = this;
+                this.AntiCycling.Add(value);
             }
         }
 
@@ -32,6 +37,20 @@ namespace JsonNameless
         {
             this.Children = new Dictionary<string, JObject>();
             this.AntiCycling = new HashSet<JObject>();
+        }
+
+        internal void AddToAnticycling(JObject ToAdd)
+        {
+            this.AntiCycling.Add(ToAdd);
+        }
+
+        internal bool CanBeAdded(JObject ToAdd)
+        {
+            if (this.AntiCycling.Contains(ToAdd))
+            {
+                return false;
+            }
+            return true;
         }
 
         internal override void ToString(ref StringBuilder builder, int tabs)

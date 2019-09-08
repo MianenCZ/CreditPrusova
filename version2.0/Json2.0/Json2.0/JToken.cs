@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("JsonNamelessTests")]
 namespace JsonNameless
 {
-    public sealed class JToken : JObject
+    public sealed class JToken : JObject //IDisposable
     {       
         internal Dictionary<string,JObject> Children;
 
@@ -24,11 +24,16 @@ namespace JsonNameless
             }
             set
             {
-                /*  if (object.Equals(this.Root, null))
-                      throw new Exception(); 
-                      */ //TODO: JExp
+                if (object.Equals(this.Root, null))
+                    throw new JsonRootException("Root of array must be initialized before adding members to array");
+                //TODO: JExp
+                if (object.Equals(value, null))
+                    throw new JsonNullException("Null cannot be assigned as a member of JToken");
+                if (!(this.Root.CanBeAdded(value)))
+                    throw new JsonDuplicatedException("This JsonTree already contains JObject you are trying to add and it cannot be added again.");             
                 Children[Key] = value;
                 value.Root = this.Root;
+                this.Root.AddToAnticycling(value);
             }
         }
         public JToken()

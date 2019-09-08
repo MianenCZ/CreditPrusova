@@ -6,18 +6,69 @@ using System.Threading.Tasks;
 
 namespace JsonNameless
 {
-    public class JArray : JObject
+    public class JArray : JObject //IDisposable
     {
-        public List<JObject> Value;
+        internal List<JObject> Value;
 
         internal override JRoot Root { get; set; }
 
         public int ValuesCount { get => Value.Count; }
 
-        //TODO: Constuktory z IEnumerable, IColection
+        public JObject this[int Key]
+        {
+            get
+            {
+                return Value[Key];
+            }
+            set
+            {
+                if (object.Equals(this.Root, null))
+                      throw new JsonRootException("Root of array must be initialized before adding members to array");
+                //TODO: JExp
+                if (object.Equals(value, null))
+                    throw new JsonNullException("Null cannot be assigned as a member of JArray");
+                if (!(this.Root.CanBeAdded(value)))
+                    throw new JsonDuplicatedException("This JsonTree already contains JObject you are trying to add and it cannot be added again.");
+                Value[Key] = value;
+                value.Root = this.Root;
+                this.Root.AddToAnticycling(value);
+            }
+        }
         public JArray()
         {
             this.Value = new List<JObject>();
+        }
+
+        public JArray(IEnumerable<JObject> collection)
+        {
+            this.Value = new List<JObject>();
+            this.Value.AddRange(collection);
+        }
+
+        public void Add(JObject ItemToAdd)
+        {
+            if (object.Equals(this.Root, null))
+                throw new JsonRootException("Root of array must be initialized before adding members to array");
+            if (object.Equals(ItemToAdd, null))
+                throw new JsonNullException("Null cannot be assigned as a member of JArray");
+            if (!(this.Root.CanBeAdded(ItemToAdd)))
+                throw new JsonDuplicatedException("This JsonTree already contains JObject you are trying to add and it cannot be added again.");
+            ItemToAdd.Root = this.Root;
+            this.Value.Add(ItemToAdd);
+            this.Root.AddToAnticycling(ItemToAdd);
+        }
+
+        public void AddOnIndex(int Index, JObject ItemToAdd)
+        {
+            if (object.Equals(this.Root, null))
+                throw new JsonRootException("Root of array must be initialized before adding members to array");
+            if (object.Equals(ItemToAdd, null))
+                throw new JsonNullException("Null cannot be assigned as a member of JArray");
+            if (!(this.Root.CanBeAdded(ItemToAdd)))
+                throw new JsonDuplicatedException("This JsonTree already contains JObject you are trying to add and it cannot be added again.");
+            ItemToAdd.Root = this.Root;
+            this.Value.Insert(Index, ItemToAdd);
+            this.Root.AddToAnticycling(ItemToAdd);
         }
 
         public override string ToString()
@@ -88,7 +139,6 @@ namespace JsonNameless
             }
 
             builder.Append("]");
-            //TODO:bez tokenu, bez pole a pod 10 listu na radek, jinak pod sebe
         }
 
         internal override void ToStringPressed(ref StringBuilder builder)
