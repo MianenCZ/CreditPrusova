@@ -20,7 +20,9 @@ namespace JsonNameless
         /// <param name="Value"></param>
         public JString(string Value)
         {
-            this.Value = Value;          
+
+            this.Value = Value;
+
         }
 
         internal override void ToString(ref StringBuilder builder, int tabs)

@@ -14,7 +14,6 @@ namespace JsonNamelessTests
         [TestMethod()]
         public void JTokenToStringPressedTest()
         {
-            
             JNumber n = new JNumber(7.3);
             JNumber n2 = new JNumber(42);
             JNumber n3 = new JNumber(3.14);
@@ -39,7 +38,6 @@ namespace JsonNamelessTests
 
             try { aa.Add(nu); }
             catch (JsonDuplicatedException e) { Console.WriteLine("zkusili jsme pridat podruhe"); }
-            
             Console.WriteLine(root.ToStringPressed());
             Console.WriteLine(root.ToString());
             Console.WriteLine(r.ToStringPressed());

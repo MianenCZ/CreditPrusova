@@ -3,38 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("JsonReadingTests")]
 namespace JsonReading
 {
-	public class JToken : JObject
-	{
-		public override string Name { get; set; }
-		
-		public int ChildrenCount { get; set; }
+    public sealed class JArray :JObject
+    {
+        public override string Name { get; set; }
 
-		internal List<JObject> Value;
-
-		public JToken(string Name) : base(Name)
-		{
-			this.Name = Name;
+        public JArray(string Name) : base(Name)
+        {
+            this.Name = Name;
             this.Value = new List<JObject>();
-		}
-
+        }
+        public List<JObject> Value;
+ 
         public override string ValueToStringPressed()
         {
-            StringBuilder output = new StringBuilder("{");
+            StringBuilder output = new StringBuilder("[");
             for (int i = 0; i < this.Value.Count; i++)
             {
-                output.Append(this.Value[i].ToStringPressed());
-                if (i < this.Value.Count - 1)
-                {
-                    output.Append(",");
-                }
+                    output.Append(this.Value[i].ValueToStringPressed());
+                    if (i < this.Value.Count - 1)
+                    {
+                        output.Append(",");
+                    }               
             }
-            output.Append("}");
-            return output.ToString();
+            output.Append("]");
+            return output.ToString(); //StringBulider.ToSTring(); not my own method
         }
 
         public override string ToStringPressed()
@@ -43,10 +38,9 @@ namespace JsonReading
             output.Append(this.ValueToStringPressed());
             return output.ToString();
         }
-
         public override string ValueToString(int tabs)
-        {
-            StringBuilder output = new StringBuilder("{");
+        {           
+            StringBuilder output = new StringBuilder("[");
             tabs++;
             for (int i = 0; i < this.Value.Count; i++)
             {
@@ -55,7 +49,7 @@ namespace JsonReading
                 {
                     output.Append("\t");
                 }
-                output.Append(this.Value[i].ToString(tabs));
+                output.Append(this.Value[i].ValueToString(tabs));
                 if (i < this.Value.Count - 1)
                 {
                     output.Append(",");
@@ -67,9 +61,10 @@ namespace JsonReading
             {
                 output.Append("\t");
             }
-            output.Append("}");
-            return output.ToString();
+            output.Append(" ]");
+            return output.ToString(); //StringBulider.ToSTring(); not my own method
         }
+
 
         public override string ToString(int tabs)
         {
@@ -78,7 +73,5 @@ namespace JsonReading
             return output.ToString();
         }
 
-        
-       
     }
 }

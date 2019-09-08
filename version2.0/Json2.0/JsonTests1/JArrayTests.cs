@@ -77,7 +77,7 @@ namespace JsonNamelessTests
             a.Add(t);
             t["string"] = s2;
             t["nill"] = nu2;
-            t["cislo"] = n2;                        
+            t["cislo"] = n2;
             Console.WriteLine(a.ToString());
             JArray aa = new JArray();
             a.Add(aa);

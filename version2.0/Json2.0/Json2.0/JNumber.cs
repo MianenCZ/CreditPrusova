@@ -37,7 +37,7 @@ namespace JsonNameless
             CultureInfo us = new CultureInfo("us");
             return this.Value.ToString(us);
         }
-        
+
         internal override void ToStringPressed(ref StringBuilder builder)
         {
             builder.Append(this.ToString());

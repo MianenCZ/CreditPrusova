@@ -18,7 +18,7 @@ namespace JsonNameless
         public JsonException(System.Runtime.Serialization.SerializationInfo info,
             System.Runtime.Serialization.StreamingContext context)
             : base(info, context) { }
-        
+
 
     }
     public sealed class JsonRootException : JsonException
@@ -35,3 +35,4 @@ namespace JsonNameless
         public JsonDuplicatedException(string message, Exception innerException) { }
     }
 } 
+
